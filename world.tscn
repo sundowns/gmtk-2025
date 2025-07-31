@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhmwqbryakxp2"]
+[gd_scene load_steps=7 format=3 uid="uid://bhmwqbryakxp2"]
 
 [ext_resource type="PackedScene" uid="uid://c6kb5jatwtque" path="res://camera_3d.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://wabpd600ploi" path="res://player.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://c63estoyrs8lb" path="res://assets/ball.tscn" id="2_tlwt5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5m4"]
 albedo_color = Color(0.13472, 0.24, 0.1272, 1)
@@ -30,3 +31,6 @@ shadow_enabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.71936)
 mesh = SubResource("BoxMesh_fj7yv")
+
+[node name="Simple soccer football" parent="." instance=ExtResource("2_tlwt5")]
+transform = Transform3D(0.3, 0, 0, 0, 0.21392, 0.210329, 0, -0.210329, 0.21392, -2.26778, 0.247167, 0.448275)
