@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c63estoyrs8lb"]
+
+[ext_resource type="PackedScene" uid="uid://ci66hly5cggui" path="res://assets/Simple soccer football.glb" id="1_8kf32"]
+[ext_resource type="Script" uid="uid://c28k3jmt6c88q" path="res://ball.gd" id="2_f8axv"]
+
+[node name="Ball" instance=ExtResource("1_8kf32")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_f8axv")

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c6kb5jatwtque" path="res://camera_3d.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://wabpd600ploi" path="res://player.tscn" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://c63estoyrs8lb" path="res://assets/ball.tscn" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://c63estoyrs8lb" path="res://ball.tscn" id="2_tlwt5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5m4"]
 albedo_color = Color(0.13472, 0.24, 0.1272, 1)
