@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://wabpd600ploi"]
+
+[ext_resource type="Script" uid="uid://bki11a1rkv63n" path="res://entities/player/player.gd" id="1_mab2k"]
+[ext_resource type="Texture2D" uid="uid://dmi3vwripgyfa" path="res://assets/player-planning.png" id="2_453mm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_453mm"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0.54, 0.54, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_453mm"]
+size = Vector3(0.5, 0.7, 0.5)
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_mab2k")
+
+[node name="Planning" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Planning"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170185, 0)
+cast_shadow = 0
+pixel_size = 0.003
+axis = 1
+texture = ExtResource("2_453mm")
+
+[node name="Replay" type="Node3D" parent="."]
+
+[node name="ReplayMesh" type="MeshInstance3D" parent="Replay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+material_override = SubResource("StandardMaterial3D_453mm")
+mesh = SubResource("BoxMesh_453mm")

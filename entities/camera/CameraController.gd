@@ -10,4 +10,4 @@ class_name CameraController
 
 func _physics_process(_delta: float) -> void:
 	if (target != null):
-		global_position = target.global_position
+		global_position = global_position.lerp(target.global_position, 1.0 - exp(-_delta * move_speed))

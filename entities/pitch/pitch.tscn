@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://qgctc1ji1p6"]
+
+[ext_resource type="Material" uid="uid://ckj1ekx87f0nw" path="res://materials/pitch_replay.tres" id="1_0scay"]
+[ext_resource type="Script" uid="uid://davdfsc6811cf" path="res://entities/pitch/pitch.gd" id="1_koijf"]
+[ext_resource type="Material" uid="uid://dodyfkeal6rxk" path="res://materials/pitch_planning.tres" id="3_n3spq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
+size = Vector2(100, 100)
+
+[node name="Pitch" type="MeshInstance3D"]
+material_override = ExtResource("1_0scay")
+mesh = SubResource("PlaneMesh_gv5m4")
+skeleton = NodePath("../..")
+script = ExtResource("1_koijf")
+planning_material = ExtResource("3_n3spq")
+replay_material = ExtResource("1_0scay")

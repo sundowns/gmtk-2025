@@ -1,3 +1,6 @@
 extends Node
 
-signal GoalScored;
+@warning_ignore("unused_signal")
+signal GameModeChanged(mode: Global.GameMode)
+
+# signal GoalScored;
