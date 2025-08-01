@@ -13,10 +13,12 @@ config_version=5
 config/name="gmtk-2025"
 run/main_scene="uid://bcsw51ohk7d33"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
+ActionRecorder="*res://autoload/ActionRecorder.gd"
 Events="*res://autoload/Events.gd"
 GameModeManager="*res://autoload/GameModeManager.gd"
 CursorManager="*res://autoload/CursorManager.gd"

@@ -13,12 +13,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.90034)
 
 [node name="Player2" parent="Entities" instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1673, 0, 1.21585)
-colour = Color(0.701, 0.54, 1, 1)
-
-[node name="Player3" parent="Entities" instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40916, 0, 1.21585)
-colour = Color(0.54, 1, 0.685667, 1)
+colour = Color(0.54, 0.938667, 1, 1)
 
 [node name="Geometry" type="Node3D" parent="."]
 
