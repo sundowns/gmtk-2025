@@ -28,8 +28,7 @@ func _physics_process(delta: float) -> void:
 
 	if (velocity.length() > 0):
 		var direction = velocity.normalized()
-		var target_basis = replay_mesh.basis.looking_at(direction)
-		replay_mesh.basis = replay_mesh.basis.slerp(target_basis, delta * rotation_speed)
+		replay_mesh.basis = replay_mesh.basis.slerp(Basis.looking_at(direction), delta * rotation_speed)
 		global_position += direction * move_speed * delta;
 
 func on_game_mode_changed(mode: Global.GameMode) -> void:
