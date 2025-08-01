@@ -10,6 +10,7 @@
 [node name="Entities" type="Node" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource("2_fj7yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.90034)
 
 [node name="Player2" parent="Entities" instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1673, 0, 1.21585)
@@ -27,8 +28,7 @@ colour = Color(0.54, 1, 0.685667, 1)
 transform = Transform3D(0.917387, 0.279034, -0.283798, 0, 0.713067, 0.701096, 0.397997, -0.643176, 0.654158, 0, 1.05553, 0)
 shadow_enabled = true
 
-[node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_f3sb7")]
-target = NodePath("../Entities/Player")
+[node name="Camera3D" parent="." instance=ExtResource("1_f3sb7")]
 
 [node name="Ball" parent="." instance=ExtResource("2_tlwt5")]
 transform = Transform3D(0.3, 0, 0, 0, 0.21392, 0.210329, 0, -0.210329, 0.21392, -2.26778, 0.247167, 0.448275)

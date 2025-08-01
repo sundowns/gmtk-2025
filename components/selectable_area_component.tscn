@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://cud3nksmto32m" path="res://components/selectable_area_component.gd" id="1_6fcv8"]
 
 [node name="SelectableAreaComponent" type="Area3D"]
+monitoring = false
 script = ExtResource("1_6fcv8")

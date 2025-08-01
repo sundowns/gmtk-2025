@@ -2,6 +2,7 @@ extends Node3D
 class_name Player
 
 @onready var planning: Node3D = get_node("Planning")
+@onready var planning_sprite: Sprite3D = get_node("Planning/Sprite3D")
 @onready var replay: Node3D = get_node("Replay")
 @onready var replay_mesh: MeshInstance3D = get_node("Replay/ReplayMesh")
 
@@ -11,6 +12,7 @@ class_name Player
 @export var colour: Color = Color("ff8a8a")
 
 func _ready() -> void:
+	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_DEFAULT
 	Events.game_mode_changed.connect(on_game_mode_changed)
 	(replay_mesh.material_override as StandardMaterial3D).albedo_color = colour
 
@@ -52,6 +54,16 @@ func _on_selectable_area_component_selected() -> void:
 
 func _on_selection() -> void:
 	is_selected = true
+	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_SELECTED
 
 func _on_deselection() -> void:
 	is_selected = false
+	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_DEFAULT
+
+func _on_selectable_area_component_hover_end() -> void:
+	if is_selected: return
+	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_DEFAULT
+
+func _on_selectable_area_component_hover_start() -> void:
+	if is_selected: return
+	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_HOVERED

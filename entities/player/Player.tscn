@@ -42,4 +42,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 material_override = SubResource("StandardMaterial3D_453mm")
 mesh = SubResource("BoxMesh_453mm")
 
+[connection signal="hover_end" from="Planning/SelectableAreaComponent" to="." method="_on_selectable_area_component_hover_end"]
+[connection signal="hover_start" from="Planning/SelectableAreaComponent" to="." method="_on_selectable_area_component_hover_start"]
 [connection signal="selected" from="Planning/SelectableAreaComponent" to="." method="_on_selectable_area_component_selected"]
