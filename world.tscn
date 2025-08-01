@@ -25,7 +25,7 @@ colour = Color(0.54, 1, 0.685667, 1)
 [node name="Pitch" parent="Geometry" instance=ExtResource("2_js7pq")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 0.713067, 0.701096, 0, -0.701096, 0.713067, 0, 0, 0)
+transform = Transform3D(0.917387, 0.279034, -0.283798, 0, 0.713067, 0.701096, 0.397997, -0.643176, 0.654158, 0, 1.05553, 0)
 shadow_enabled = true
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_f3sb7")]

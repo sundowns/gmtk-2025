@@ -7,7 +7,7 @@ class_name CurrentPlayer
 
 @export var is_selected: bool = false
 @export var move_speed: float = 3
-@export var rotation_speed: float = 5
+@export var rotation_speed: float = 7
 @export var colour: Color = Color("ff8a8a")
 
 func _ready() -> void:
