@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://wabpd600ploi"]
+[gd_scene load_steps=7 format=3 uid="uid://wabpd600ploi"]
 
 [ext_resource type="Script" uid="uid://bki11a1rkv63n" path="res://entities/player/player.gd" id="1_mab2k"]
 [ext_resource type="Texture2D" uid="uid://dmi3vwripgyfa" path="res://assets/player-planning.png" id="2_453mm"]
+[ext_resource type="PackedScene" uid="uid://4w7hvtpebxr" path="res://components/selectable_area_component.tscn" id="3_l3c03"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_l3c03"]
+height = 0.2
+radius = 0.35
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_453mm"]
 resource_local_to_scene = true
@@ -22,9 +27,19 @@ pixel_size = 0.003
 axis = 1
 texture = ExtResource("2_453mm")
 
+[node name="SelectableAreaComponent" parent="Planning" instance=ExtResource("3_l3c03")]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planning/SelectableAreaComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CylinderShape3D_l3c03")
+
 [node name="Replay" type="Node3D" parent="."]
 
 [node name="ReplayMesh" type="MeshInstance3D" parent="Replay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 material_override = SubResource("StandardMaterial3D_453mm")
 mesh = SubResource("BoxMesh_453mm")
+
+[connection signal="selected" from="Planning/SelectableAreaComponent" to="." method="_on_selectable_area_component_selected"]

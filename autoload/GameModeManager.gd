@@ -9,4 +9,4 @@ enum GameMode {
 
 func set_current_mode(mode: GameMode):
 	current_mode = mode
-	Events.GameModeChanged.emit(current_mode)
+	Events.game_mode_changed.emit(current_mode)

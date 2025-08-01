@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bho060bswfykv"]
 
-[ext_resource type="PackedScene" uid="uid://c6kb5jatwtque" path="res://entities/camera/camera_3d.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://c6kb5jatwtque" path="res://entities/camera/camera_controller.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://wabpd600ploi" path="res://entities/player/Player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://qgctc1ji1p6" path="res://entities/pitch/pitch.tscn" id="2_js7pq"]
 [ext_resource type="PackedScene" uid="uid://c63estoyrs8lb" path="res://entities/ball/ball.tscn" id="2_tlwt5"]
@@ -10,7 +10,6 @@
 [node name="Entities" type="Node" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource("2_fj7yv")]
-is_selected = true
 
 [node name="Player2" parent="Entities" instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1673, 0, 1.21585)
