@@ -1,7 +1,7 @@
 extends Node3D
 class_name CameraController
 
-@onready var camera: Camera3D = get_node("Camera3D");
+@onready var camera: Camera3D = $Camera3D
 
 @export var target: Node3D
 @export var minimum_distance: float = 1
