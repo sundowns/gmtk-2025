@@ -28,6 +28,19 @@ func _on_new_player_selected(player: Player) -> void:
 func planning_mode_update(delta: float):
 	if (target != null):
 		move_towards_target_position(target.global_position, delta)
+	else:
+		var velocity: Vector3 = Vector3.ZERO
+		if Input.is_action_pressed("move_left"):
+			velocity -= Vector3(1, 0, 0)
+		if Input.is_action_pressed("move_right"):
+			velocity += Vector3(1, 0, 0)
+		if Input.is_action_pressed("move_up"):
+			velocity -= Vector3(0, 0, 1)
+		if Input.is_action_pressed("move_down"):
+			velocity += Vector3(0, 0, 1)
+
+		if velocity.length() > 0:
+			global_position += velocity.normalized() * move_speed * delta
 		
 func replay_mode_update(delta: float):
 	var count: int = 0

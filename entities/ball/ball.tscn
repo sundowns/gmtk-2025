@@ -1,8 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c63estoyrs8lb"]
+[gd_scene load_steps=4 format=3 uid="uid://820pa6y7324j"]
 
 [ext_resource type="PackedScene" uid="uid://ci66hly5cggui" path="res://assets/Simple soccer football.glb" id="1_8kf32"]
 [ext_resource type="Script" uid="uid://c28k3jmt6c88q" path="res://entities/ball/ball.gd" id="2_f8axv"]
+[ext_resource type="Texture2D" uid="uid://bld3r0f8o04bh" path="res://assets/ball-planning.png" id="2_w5wpn"]
 
-[node name="Ball" instance=ExtResource("1_8kf32")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+[node name="Ball" type="Node3D"]
 script = ExtResource("2_f8axv")
+
+[node name="Planning" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Planning"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+cast_shadow = 0
+pixel_size = 0.0035
+axis = 1
+texture = ExtResource("2_w5wpn")
+
+[node name="Replay" type="Node3D" parent="."]
+
+[node name="Simple soccer football" parent="Replay" instance=ExtResource("1_8kf32")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.256362, 0)

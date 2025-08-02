@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6kb5jatwtque" path="res://entities/camera/camera_controller.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://wabpd600ploi" path="res://entities/player/Player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://qgctc1ji1p6" path="res://entities/pitch/pitch.tscn" id="2_js7pq"]
-[ext_resource type="PackedScene" uid="uid://c63estoyrs8lb" path="res://entities/ball/ball.tscn" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://820pa6y7324j" path="res://entities/ball/ball.tscn" id="2_tlwt5"]
 
 [node name="World" type="Node3D"]
 
@@ -15,6 +15,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.90034)
 [node name="Player2" parent="Entities" instance=ExtResource("2_fj7yv")]
 colour = Color(0.54, 0.938667, 1, 1)
 
+[node name="Ball" parent="Entities" instance=ExtResource("2_tlwt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55322, 0.334901, 0)
+
 [node name="Geometry" type="Node3D" parent="."]
 
 [node name="Pitch" parent="Geometry" instance=ExtResource("2_js7pq")]
@@ -24,6 +27,3 @@ transform = Transform3D(0.917387, 0.279034, -0.283798, 0, 0.713067, 0.701096, 0.
 shadow_enabled = true
 
 [node name="Camera3D" parent="." instance=ExtResource("1_f3sb7")]
-
-[node name="Ball" parent="." instance=ExtResource("2_tlwt5")]
-transform = Transform3D(0.3, 0, 0, 0, 0.21392, 0.210329, 0, -0.210329, 0.21392, -2.26778, 0.247167, 0.448275)

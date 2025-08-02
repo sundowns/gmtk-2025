@@ -1,5 +1,7 @@
-extends Button
-class_name ReplayButton
+extends Control
+class_name ReplayUi
+
+@onready var button: Button = $Button
 
 func _ready() -> void:
 	focus_mode = Control.FOCUS_NONE
@@ -8,9 +10,9 @@ func _ready() -> void:
 func _on_game_mode_changed(mode: GameModeManager.GameMode):
 	match mode:
 		GameModeManager.GameMode.PLANNING:
-			text = "PLAY"
+			button.text = "PLAY"
 		GameModeManager.GameMode.REPLAY:
-			text = "RESET"
+			button.text = "RESET"
 
-func _on_pressed() -> void:
+func _on_button_pressed() -> void:
 	GameModeManager.toggle_game_mode()

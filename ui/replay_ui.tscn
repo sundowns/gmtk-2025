@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ppgfw75shdwk"]
+
+[ext_resource type="Script" uid="uid://baumeka7cb6o" path="res://ui/replayui.gd" id="1_nsr1o"]
+
+[node name="ReplayUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nsr1o")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
