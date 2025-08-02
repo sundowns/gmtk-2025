@@ -11,10 +11,13 @@ class_name Player
 @export var rotation_speed: float = 7
 @export var colour: Color = Color("ff8a8a")
 
+## Replay
 var _replay_actions: Array = []
 var _replay_timer: float = 0.0
 var _current_action_index: int = 0
 var _initial_position: Vector3 = Vector3.ZERO
+## Recording
+var _recording_start_time_msec := 0
 
 func _ready() -> void:
 	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_DEFAULT
@@ -44,7 +47,7 @@ func handle_planning_input(delta: float) -> void:
 		var direction = velocity.normalized()
 		replay_mesh.basis = replay_mesh.basis.slerp(Basis.looking_at(direction), delta * rotation_speed)
 		global_position += direction * move_speed * delta
-		ActionRecorder.record_move(get_instance_id(), global_position)
+		ActionRecorder.record_move(get_instance_id(), global_position, Time.get_ticks_msec() - _recording_start_time_msec)
 
 func handle_replay(delta: float) -> void:
 	# Do nothing if there are no actions to play
@@ -108,6 +111,7 @@ func _on_selectable_area_component_selected() -> void:
 func _on_selection() -> void:
 	is_selected = true
 	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_SELECTED
+	_recording_start_time_msec = Time.get_ticks_msec()
 
 func _on_deselection() -> void:
 	is_selected = false
