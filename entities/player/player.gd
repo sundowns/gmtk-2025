@@ -18,6 +18,7 @@ var _current_action_index: int = 0
 var _initial_position: Vector3 = Vector3.ZERO
 ## Recording
 var _recording_start_time_msec := 0
+var _is_recording := false
 
 func _ready() -> void:
 	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_DEFAULT
@@ -33,6 +34,16 @@ func _physics_process(delta: float) -> void:
 
 func handle_planning_input(delta: float) -> void:
 	if not is_selected: return
+
+	if Input.is_action_just_pressed("start_recording"):
+		if _is_recording:
+			_is_recording = false
+			Events.deselect_current_player_request.emit()
+		else:
+			_is_recording = true
+			_recording_start_time_msec = Time.get_ticks_msec()
+			ActionRecorder.start_recording_for_player(get_instance_id())
+
 	var velocity: Vector3 = Vector3.ZERO
 	if Input.is_action_pressed("move_left"):
 		velocity -= Vector3(1, 0, 0)
@@ -47,7 +58,8 @@ func handle_planning_input(delta: float) -> void:
 		var direction = velocity.normalized()
 		replay_mesh.basis = replay_mesh.basis.slerp(Basis.looking_at(direction), delta * rotation_speed)
 		global_position += direction * move_speed * delta
-		ActionRecorder.record_move(get_instance_id(), global_position, Time.get_ticks_msec() - _recording_start_time_msec)
+		if _is_recording:
+			ActionRecorder.record_move(get_instance_id(), global_position, Time.get_ticks_msec() - _recording_start_time_msec)
 
 func handle_replay(delta: float) -> void:
 	# Do nothing if there are no actions to play
@@ -63,7 +75,7 @@ func handle_replay(delta: float) -> void:
 		return
 
 	# Find the current and next actions in the sequence
-	while _replay_actions[_current_action_index + 1].timestamp < _replay_timer:
+	while _current_action_index + 1 < _replay_actions.size() and _replay_actions[_current_action_index + 1].timestamp < _replay_timer:
 		_current_action_index += 1
 
 	var previous_action = _replay_actions[_current_action_index]
@@ -87,14 +99,15 @@ func enter_replay_mode() -> void:
 	_replay_timer = 0.0
 	_current_action_index = 0
 	
-	# Create a "zeroth" action at the beginning of the replay sequence
-	# to ensure smooth interpolation from the player's starting position.
-	var initial_action = {
-		"timestamp": 0.0,
-		"type": "MOVE",
-		"data": _initial_position
-	}
-	_replay_actions.insert(0, initial_action)
+	if not _replay_actions.is_empty():
+		# Create a "zeroth" action at the beginning of the replay sequence
+		# to ensure smooth interpolation from the player's starting position.
+		var initial_action = {
+			"timestamp": 0.0,
+			"type": "MOVE",
+			"data": _initial_position
+		}
+		_replay_actions.insert(0, initial_action)
 
 	# Set initial position for replay
 	global_position = _initial_position
@@ -103,6 +116,7 @@ func enter_replay_mode() -> void:
 func enter_planning_mode() -> void:
 	replay.visible = false
 	planning.visible = true
+	_is_recording = false
 	global_position = _initial_position
 
 func _on_selectable_area_component_selected() -> void:
@@ -111,7 +125,6 @@ func _on_selectable_area_component_selected() -> void:
 func _on_selection() -> void:
 	is_selected = true
 	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_SELECTED
-	_recording_start_time_msec = Time.get_ticks_msec()
 
 func _on_deselection() -> void:
 	is_selected = false
