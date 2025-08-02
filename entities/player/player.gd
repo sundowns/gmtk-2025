@@ -136,10 +136,19 @@ func _on_selectable_area_component_hover_start() -> void:
 
 func _on_recording_request() -> void:
 	if is_recording:
-		is_recording = false
-		Events.deselect_current_player_request.emit()
+		stop_recording()
 	else:
 		is_recording = true
 		_recording_start_time_msec = Time.get_ticks_msec()
 		ActionRecorder.start_recording_for_player(get_instance_id())
 	Events.current_player_is_recording_changed.emit(is_recording)
+
+func stop_recording() -> void:
+	is_recording = false
+	Events.deselect_current_player_request.emit()
+	global_position = _initial_position
+
+func start_recording() -> void:
+	is_recording = true
+	_recording_start_time_msec = Time.get_ticks_msec()
+	ActionRecorder.start_recording_for_player(get_instance_id())

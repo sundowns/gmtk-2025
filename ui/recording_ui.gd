@@ -22,7 +22,7 @@ func _on_game_mode_changed(mode: GameModeManager.GameMode):
 func _on_player_deselected():
 	visible = false
 
-func _on_new_player_selected(player: Player):
+func _on_new_player_selected(_player: Player):
 	visible = true
 
 func _on_player_is_recording_changed(is_recording: bool):
