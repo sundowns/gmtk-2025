@@ -15,7 +15,7 @@ albedo_color = Color(1, 0.54, 0.54, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_453mm"]
 size = Vector3(0.5, 0.7, 0.5)
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" groups=["Players"]]
 script = ExtResource("1_mab2k")
 
 [node name="Planning" type="Node3D" parent="."]

@@ -1,10 +1,10 @@
 extends Node3D
 class_name Player
 
-@onready var planning: Node3D = get_node("Planning")
-@onready var planning_sprite: Sprite3D = get_node("Planning/Sprite3D")
-@onready var replay: Node3D = get_node("Replay")
-@onready var replay_mesh: MeshInstance3D = get_node("Replay/ReplayMesh")
+@onready var planning: Node3D = $"Planning"
+@onready var planning_sprite: Sprite3D = $"Planning/Sprite3D"
+@onready var replay: Node3D = $"Replay"
+@onready var replay_mesh: MeshInstance3D = $"Replay/ReplayMesh"
 
 @export var is_selected: bool = false
 @export var move_speed: float = 3
