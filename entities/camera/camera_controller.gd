@@ -10,7 +10,7 @@ class_name CameraController
 
 func _ready() -> void:
 	Callable(initialise).call_deferred()
-	Events.new_player_selected.connect(_on_new_player_selected)
+	Events.current_player_is_recording_changed.connect(_on_current_player_is_recording_changed)
 
 func initialise() -> void:
 	CursorManager.set_camera(camera)
@@ -21,9 +21,11 @@ func _physics_process(delta: float) -> void:
 			planning_mode_update(delta)
 		GameModeManager.GameMode.REPLAY:
 			replay_mode_update(delta)
-	
-func _on_new_player_selected(player: Player) -> void:
-	target = player
+
+
+func _on_current_player_is_recording_changed(is_recording: bool) -> void:
+	if is_recording:
+		target = SelectionManager.current_selected_player
 
 func planning_mode_update(delta: float):
 	if (target != null):

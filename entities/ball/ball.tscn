@@ -12,6 +12,7 @@ script = ExtResource("2_f8axv")
 [node name="Sprite3D" type="Sprite3D" parent="Planning"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
 cast_shadow = 0
+modulate = Color(0, 0, 0, 1)
 pixel_size = 0.0035
 axis = 1
 texture = ExtResource("2_w5wpn")

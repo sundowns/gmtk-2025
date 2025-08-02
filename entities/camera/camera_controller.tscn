@@ -6,4 +6,4 @@
 script = ExtResource("1_lsbxg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.446197, 0.894935, 0, -0.894935, 0.446197, 0, 5.5, 2)
+transform = Transform3D(1, 0, 0, 0, 0.33249, 0.943107, 0, -0.943107, 0.33249, 0, 5.5, 2)

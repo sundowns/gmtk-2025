@@ -52,7 +52,6 @@ func handle_planning_input(delta: float) -> void:
 
 	if velocity.length() > 0:
 		var direction = velocity.normalized()
-		replay_mesh.basis = replay_mesh.basis.slerp(Basis.looking_at(direction), delta * rotation_speed)
 		global_position += direction * move_speed * delta
 		if is_recording:
 			ActionRecorder.record_move(get_instance_id(), global_position, Time.get_ticks_msec() - _recording_start_time_msec)
@@ -80,6 +79,8 @@ func handle_replay(delta: float) -> void:
 	# Interpolate between the two actions based on the timer
 	var t = inverse_lerp(previous_action.timestamp, next_action.timestamp, _replay_timer)
 	global_position = previous_action.data.lerp(next_action.data, t)
+	var direction: Vector3 = (next_action.data - previous_action.data).normalized()
+	replay_mesh.basis = replay_mesh.basis.slerp(Basis.looking_at(direction), delta * rotation_speed)
 
 func on_game_mode_changed(mode: GameModeManager.GameMode) -> void:
 	match mode:
