@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkcsengb0i64i"]
+
+[ext_resource type="PackedScene" uid="uid://chijsak3mwkre" path="res://ui/recording_ui.tscn" id="2_xqqt7"]
+
+[node name="UILayer" type="CanvasLayer"]
+
+[node name="BottomMiddle" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="RecordingUI" parent="BottomMiddle" instance=ExtResource("2_xqqt7")]
+layout_mode = 2

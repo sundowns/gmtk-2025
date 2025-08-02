@@ -5,6 +5,7 @@ var current_selected_player: Player
 func _ready() -> void:
 	Events.new_player_selection_request.connect(on_player_selected)
 	Events.deselect_current_player_request.connect(on_player_deselected)
+	Events.start_stop_recording_request.connect(on_start_stop_recording_request)
 
 func on_player_deselected() -> void:
 	if current_selected_player != null:
@@ -21,3 +22,7 @@ func on_player_selected(new_player: Player) -> void:
 	current_selected_player = new_player
 	current_selected_player._on_selection()
 	Events.new_player_selected.emit(current_selected_player)
+
+func on_start_stop_recording_request() -> void:
+	if current_selected_player:
+		current_selected_player._on_recording_request()

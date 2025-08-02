@@ -18,7 +18,7 @@ var _current_action_index: int = 0
 var _initial_position: Vector3 = Vector3.ZERO
 ## Recording
 var _recording_start_time_msec := 0
-var _is_recording := false
+var is_recording := false
 
 func _ready() -> void:
 	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_DEFAULT
@@ -36,14 +36,10 @@ func handle_planning_input(delta: float) -> void:
 	if not is_selected: return
 
 	if Input.is_action_just_pressed("start_recording"):
-		if _is_recording:
-			_is_recording = false
-			Events.deselect_current_player_request.emit()
-		else:
-			_is_recording = true
-			_recording_start_time_msec = Time.get_ticks_msec()
-			ActionRecorder.start_recording_for_player(get_instance_id())
+		_on_recording_request()
 
+	if !is_recording: return # prevent movement outside of recording
+	
 	var velocity: Vector3 = Vector3.ZERO
 	if Input.is_action_pressed("move_left"):
 		velocity -= Vector3(1, 0, 0)
@@ -58,7 +54,7 @@ func handle_planning_input(delta: float) -> void:
 		var direction = velocity.normalized()
 		replay_mesh.basis = replay_mesh.basis.slerp(Basis.looking_at(direction), delta * rotation_speed)
 		global_position += direction * move_speed * delta
-		if _is_recording:
+		if is_recording:
 			ActionRecorder.record_move(get_instance_id(), global_position, Time.get_ticks_msec() - _recording_start_time_msec)
 
 func handle_replay(delta: float) -> void:
@@ -116,7 +112,7 @@ func enter_replay_mode() -> void:
 func enter_planning_mode() -> void:
 	replay.visible = false
 	planning.visible = true
-	_is_recording = false
+	is_recording = false
 	global_position = _initial_position
 
 func _on_selectable_area_component_selected() -> void:
@@ -137,3 +133,13 @@ func _on_selectable_area_component_hover_end() -> void:
 func _on_selectable_area_component_hover_start() -> void:
 	if is_selected: return
 	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_HOVERED
+
+func _on_recording_request() -> void:
+	if is_recording:
+		is_recording = false
+		Events.deselect_current_player_request.emit()
+	else:
+		is_recording = true
+		_recording_start_time_msec = Time.get_ticks_msec()
+		ActionRecorder.start_recording_for_player(get_instance_id())
+	Events.current_player_is_recording_changed.emit(is_recording)
