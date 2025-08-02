@@ -42,6 +42,8 @@ theme_override_constants/separation = 0
 [node name="TextureRect" type="TextureRect" parent="RecordButton/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_jsmmp")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="RecordButton/HBoxContainer"]
 layout_mode = 2

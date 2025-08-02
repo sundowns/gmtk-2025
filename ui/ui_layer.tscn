@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkcsengb0i64i"]
+[gd_scene load_steps=3 format=3 uid="uid://bkcsengb0i64i"]
 
+[ext_resource type="Script" uid="uid://4xmvc66qmcxc" path="res://ui/replay_button.gd" id="2_00rn6"]
 [ext_resource type="PackedScene" uid="uid://chijsak3mwkre" path="res://ui/recording_ui.tscn" id="2_xqqt7"]
 
 [node name="UILayer" type="CanvasLayer"]
@@ -22,3 +23,24 @@ theme_override_constants/margin_bottom = 20
 
 [node name="RecordingUI" parent="BottomMiddle" instance=ExtResource("2_xqqt7")]
 layout_mode = 2
+
+[node name="MiddleRight" type="MarginContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="ReplayButton" type="Button" parent="MiddleRight"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+script = ExtResource("2_00rn6")
+
+[connection signal="pressed" from="MiddleRight/ReplayButton" to="MiddleRight/ReplayButton" method="_on_pressed"]

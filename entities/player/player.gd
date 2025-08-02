@@ -138,9 +138,7 @@ func _on_recording_request() -> void:
 	if is_recording:
 		stop_recording()
 	else:
-		is_recording = true
-		_recording_start_time_msec = Time.get_ticks_msec()
-		ActionRecorder.start_recording_for_player(get_instance_id())
+		start_recording()
 	Events.current_player_is_recording_changed.emit(is_recording)
 
 func stop_recording() -> void:
@@ -149,6 +147,7 @@ func stop_recording() -> void:
 	global_position = _initial_position
 
 func start_recording() -> void:
+	planning_sprite.modulate = Constants.COLOUR_PLAYER_PLANNING_RECORDING
 	is_recording = true
 	_recording_start_time_msec = Time.get_ticks_msec()
 	ActionRecorder.start_recording_for_player(get_instance_id())
